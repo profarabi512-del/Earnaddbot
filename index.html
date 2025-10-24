@@ -541,7 +541,7 @@
             
             <div class="action-buttons">
                 <button class="btn btn-primary" id="watch-ad-btn" onclick="watchAd()">
-                    <i class="fas fa-play"></i> বিজ্ঞাপন দেখুন (১ টাকা)
+                    <i class="fas fa-play"></i> বিজ্ঞাপন দেখুন (০.৫০ টাকা)
                 </button>
                 <button class="btn btn-success" id="auto-ad-btn" onclick="startAutoAds()">
                     <i class="fas fa-robot"></i> বিজ্ঞাপন ইনকাম 
@@ -579,7 +579,7 @@
             </div>
             
             <div class="rate-info">
-                <p><i class="fas fa-ad"></i> প্রতি বিজ্ঞাপন = ১ টাকা</p>
+                <p><i class="fas fa-ad"></i> প্রতি বিজ্ঞাপন =০.৫০ টাকা</p>
                 <p><i class="fas fa-money-bill-wave"></i> ন্যূনতম উত্তোলন:৫০০ টাকা</p>
                 <p><i class="fas fa-gift"></i> রেফারেল বোনাস:২০টাকা প্রতি ব্যবহারকারী</p>
             </div>
@@ -591,7 +591,7 @@
             
             <div class="action-buttons">
                 <button class="btn btn-primary" id="watch-ad-btn-earn" onclick="watchAd()">
-                    <i class="fas fa-play"></i> বিজ্ঞাপন দেখুন (১টাকা)
+                    <i class="fas fa-play"></i> বিজ্ঞাপন দেখুন (০.৫০টাকা)
                 </button>
                 <button class="btn btn-success" id="auto-ad-btn-earn" onclick="startAutoAds()">
                     <i class="fas fa-robot"></i> ইনকাম বিজ্ঞাপন
@@ -615,7 +615,7 @@
             </div>
             
             <div class="rate-info">
-                <p><i class="fas fa-ad"></i> প্রতি বিজ্ঞাপন = ১ টাকা</p>
+                <p><i class="fas fa-ad"></i> প্রতি বিজ্ঞাপন =০.৫০ টাকা</p>
                 <p><i class="fas fa-gift"></i> রেফারেল বোনাস:২০ টাকা প্রতি ব্যবহারকারী</p>
             </div>
         </div>
@@ -654,7 +654,7 @@
             </div>
             
             <div class="rate-info">
-                <p><i class="fas fa-money-bill-wave"></i> ন্যূনতম উত্তোলন:১০০০ টাকা</p>
+                <p><i class="fas fa-money-bill-wave"></i> ন্যূনতম উত্তোলন:৫০০টাকা</p>
                 <p><i class="fas fa-clock"></i> উত্তোলন প্রসেসিং সময়: ২৪-৪৮ ঘন্টা</p>
             </div>
         </div>
@@ -716,7 +716,7 @@
 
     <script>
         // Constants
-        const POINTS_PER_AD = 1.00; // প্রতি বিজ্ঞাপনে ১ টাকা
+        const POINTS_PER_AD = 1.00; // প্রতি বিজ্ঞাপনে ০.৫০ টাকা
         const MIN_WITHDRAW_TAKA = 1000; // ন্যূনতম উত্তোলন৫০০টাকা
         const REFERRAL_BONUS = 20.00; // রেফারেল বোনাস ২০ টাকা
         
@@ -803,7 +803,7 @@
                 // Check if this is first visit and not already referred
                 if (!localStorage.getItem('referredBy')) {
                     localStorage.setItem('referredBy', referrerId);
-                    showNotification('আপনি একটি রেফারেল লিঙ্ক ব্যবহার করে যোগদান করেছেন! রেফারার ৫ টাকা বোনাস পাবেন।', 'success');
+                    showNotification('আপনি একটি রেফারেল লিঙ্ক ব্যবহার করে যোগদান করেছেন! রেফারার ২০টাকা বোনাস পাবেন।', 'success');
                     
                     // In a real app, you would send this to your backend
                     setTimeout(() => {
@@ -1151,6 +1151,7 @@
     </script>
 </body>
 </html>
+
 
 
 
