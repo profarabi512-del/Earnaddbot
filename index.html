@@ -607,7 +607,7 @@
                     <div>আমন্ত্রিত: <strong id="referral-count-earn">0</strong></div>
                     <div>আয়: <strong id="referral-earnings-earn">0.00</strong> টাকা</div>
                 </div>
-                <p style="font-size: 14px; margin-bottom: 10px;">আপনার রেফারেল লিঙ্ক শেয়ার করুন এবং প্রতিটি বন্ধুর জন্য ৫ টাকা বোনাস পান!</p>
+                <p style="font-size: 14px; margin-bottom: 10px;">আপনার রেফারেল লিঙ্ক শেয়ার করুন এবং প্রতিটি বন্ধুর জন্য ২০ টাকা বোনাস পান!</p>
                 <div class="referral-link-container">
                     <input type="text" id="referral-link-earn" readonly>
                     <button id="copy-referral-earn" onclick="copyReferralLink()">কপি</button>
@@ -923,11 +923,11 @@
                     createCoinAnimation();
                     
                     // Show success notification
-                    showNotification(`১ টাকা যোগ হয়েছে! আপনার ব্যালেন্স: ${(earnedPoints + referralEarnings).toFixed(2)} টাকা`, 'success');
+                    showNotification(`০.৫০ টাকা যোগ হয়েছে! আপনার ব্যালেন্স: ${(earnedPoints + referralEarnings).toFixed(2)} টাকা`, 'success');
                     
                     // Check if earned enough for withdrawal
                     if (earnedPoints + referralEarnings >= MIN_WITHDRAW_TAKA) {
-                        showNotification(`অভিনন্দন! আপনি উত্তোলনের জন্য ${MIN_WITHDRAW_TAKA} টাকা সংগ্রহ করেছেন।`, 'info');
+                        showNotification(`অভিনন্দন! আপনি উত্তোলনের জন্য ${MIN_WITHDRAW_TAKA} টাকা উইথড্র করেছেন।`, 'info');
                     }
                     
                     // If in auto mode, continue after delay
@@ -1048,8 +1048,8 @@
             }
             
             if (amount < MIN_WITHDRAW_TAKA) {
-                withdrawStatus.textContent = `ন্যূনতম উত্তোলন পরিমাণ ${MIN_WITHDRAW_TAKA} টাকা।`;
-                withdrawStatus.className = 'error-message';
+                withdrawStatus.textContent = `ন্যূনতম উত্তোলন পরিমাণ $MIN_WITHDRAW_TAKA} ১০০০টাকা।`;
+                withdrawStatus.className =success
                 return;
             }
             
@@ -1061,13 +1061,13 @@
             
             if (!paymentMethod) {
                 withdrawStatus.textContent = 'দয়া করে একটি পেমেন্ট মাধ্যম নির্বাচন করুন।';
-                withdrawStatus.className = 'error-message';
+                withdrawStatus.className = bkash1
                 return;
             }
             
             if (!phoneNumber || !/^01[3-9][0-9]{8}$/.test(phoneNumber)) {
                 withdrawStatus.textContent = 'দয়া করে একটি বৈধ বাংলাদেশী মোবাইল নম্বর লিখুন।';
-                withdrawStatus.className = 'error-message';
+                withdrawStatus.className =suvcy
                 return;
             }
             
@@ -1151,6 +1151,7 @@
     </script>
 </body>
 </html>
+
 
 
 
