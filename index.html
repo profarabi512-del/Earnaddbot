@@ -28,7 +28,7 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            background: red(135deg, #0f0c29, #302b63, #24243e);
             color: var(--text-color);
             line-height: 1.6;
             min-height: 100vh;
@@ -51,7 +51,7 @@
         }
         
         .header {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            background: blue(to right, var(--primary-color), var(--secondary-color));
             color: white;
             padding: 20px;
             text-align: center;
@@ -76,7 +76,7 @@
         }
         
         .user-card, .stat-card, .progress-container, .referral-section, .rate-info, .withdraw-section, .ad-status {
-            background-color: var(--card-bg);
+            background-color: red(--card-bg);
             margin: 15px;
             padding: 15px;
             border-radius: 10px;
@@ -91,7 +91,7 @@
         .user-avatar {
             width: 50px;
             height: 50px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background:red(45deg, var(--primary-color), var(--secondary-color));
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -531,7 +531,7 @@
                 </div>
                 <div class="progress-text">
                     <span>0 টাকা</span>
-                    <span>20 টাকা</span>
+                    <span>২০ টাকা</span>
                 </div>
             </div>
             
@@ -541,7 +541,7 @@
             
             <div class="action-buttons">
                 <button class="btn btn-primary" id="watch-ad-btn" onclick="watchAd()">
-                    <i class="fas fa-play"></i> বিজ্ঞাপন দেখুন (২ টাকা)
+                    <i class="fas fa-play"></i> বিজ্ঞাপন দেখুন (১ টাকা)
                 </button>
                 <button class="btn btn-success" id="auto-ad-btn" onclick="startAutoAds()">
                     <i class="fas fa-robot"></i> স্বয়ংক্রিয় বিজ্ঞাপন
@@ -579,9 +579,9 @@
             </div>
             
             <div class="rate-info">
-                <p><i class="fas fa-ad"></i> প্রতি বিজ্ঞাপন = ২ টাকা</p>
-                <p><i class="fas fa-money-bill-wave"></i> ন্যূনতম উত্তোলন: ২০ টাকা</p>
-                <p><i class="fas fa-gift"></i> রেফারেল বোনাস: ৫ টাকা প্রতি ব্যবহারকারী</p>
+                <p><i class="fas fa-ad"></i> প্রতি বিজ্ঞাপন = ১ টাকা</p>
+                <p><i class="fas fa-money-bill-wave"></i> ন্যূনতম উত্তোলন:৫০০ টাকা</p>
+                <p><i class="fas fa-gift"></i> রেফারেল বোনাস:২০টাকা প্রতি ব্যবহারকারী</p>
             </div>
         </div>
         
@@ -591,7 +591,7 @@
             
             <div class="action-buttons">
                 <button class="btn btn-primary" id="watch-ad-btn-earn" onclick="watchAd()">
-                    <i class="fas fa-play"></i> বিজ্ঞাপন দেখুন (২ টাকা)
+                    <i class="fas fa-play"></i> বিজ্ঞাপন দেখুন (১টাকা)
                 </button>
                 <button class="btn btn-success" id="auto-ad-btn-earn" onclick="startAutoAds()">
                     <i class="fas fa-robot"></i> স্বয়ংক্রিয় বিজ্ঞাপন
@@ -672,20 +672,20 @@
                 
                 <div class="stat-card">
                     <h3><i class="fas fa-gift"></i> বিশেষ অফার</h3>
-                    <p>এই সপ্তাহে অতিরিক্ত ১০% বোনাস পেতে আপনার বন্ধুদের আমন্ত্রণ করুন।</p>
+                    <p>এই সপ্তাহে অতিরিক্ত ২% বোনাস পেতে আপনার বন্ধুদের আমন্ত্রণ করুন।</p>
                     <small>৫ দিন আগে</small>
                 </div>
                 
                 <div class="stat-card">
                     <h3><i class="fas fa-exclamation-triangle"></i> গুরুত্বপূর্ণ নোটিশ</h3>
-                    <p>উত্তোলনের জন্য ন্যূনতম ২০ টাকা প্রয়োজন। দয়া করে উত্তোলন করার আগে নিশ্চিত হয়ে নিন।</p>
+                    <p>উত্তোলনের জন্য ন্যূনতম ৫০০ টাকা প্রয়োজন। দয়া করে উত্তোলন করার আগে নিশ্চিত হয়ে নিন।</p>
                     <small>১ সপ্তাহ আগে</small>
                 </div>
             </div>
         </div>
         
         <div class="footer">
-            <p>© ২০২৩ টাকা আয় করুন অ্যাপ। সকল অধিকার সংরক্ষিত।</p>
+            <p>© Earn</p>
         </div>
     </div>
 
@@ -717,7 +717,7 @@
     <script>
         // Constants
         const POINTS_PER_AD = 1.00; // প্রতি বিজ্ঞাপনে ১ টাকা
-        const MIN_WITHDRAW_TAKA = 1000; // ন্যূনতম উত্তোলন ১০০০  টাকা
+        const MIN_WITHDRAW_TAKA = 1000; // ন্যূনতম উত্তোলন৫০০টাকা
         const REFERRAL_BONUS = 20.00; // রেফারেল বোনাস ২০ টাকা
         
         // Telegram Bot Configuration - এখানে আপনার বটের তথ্য দিন
@@ -1151,6 +1151,7 @@
     </script>
 </body>
 </html>
+
 
 
 
