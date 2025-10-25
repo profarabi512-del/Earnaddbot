@@ -181,5 +181,42 @@
         }
     </script>
 </body>
+<!-- অ্যাডমিন প্যানেল -->
+<section id="adminPanel" class="section">
+    <div class="card">
+        <h2>⚙️ অ্যাডমিন প্যানেল</h2>
+        <p><b>Welcome, Admin!</b></p>
+        <p>এখানে আপনি দেখতে পারবেন:</p>
+        <ul style="text-align:left;max-width:350px;margin:auto;">
+            <li>👤 ইউজার ইনফো (ID, Name, Username)</li>
+            <li>💸 Withdraw রিকোয়েস্ট</li>
+            <li>🎯 মোট Ad দেখা</li>
+            <li>👥 রেফার সংখ্যা</li>
+        </ul>
+    </div>
+</section>
+
+<script>
+const ADMIN_ID = 7886407854; // তোমার Telegram ID
+
+// ন্যাভিগেশন
+buttons.forEach((btn, i) => {
+    document.getElementById(btn).onclick = () => {
+        buttons.forEach(id => document.getElementById(id).classList.remove("active"));
+        sections.forEach(id => document.getElementById(id).style.display = "none");
+        document.getElementById(btn).classList.add("active");
+
+        if (sections[i] === "adminPanel") {
+            if (user.id !== ADMIN_ID) {
+                showStatus("❌ শুধুমাত্র অ্যাডমিনের জন্য!", "error");
+                return;
+            }
+            document.getElementById("adminPanel").style.display = "block";
+        } else {
+            document.getElementById(sections[i]).style.display = "block";
+        }
+    };
+});
+</script>
 
 
