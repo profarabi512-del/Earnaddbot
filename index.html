@@ -1153,7 +1153,418 @@
 </html>
 
 
-        // === Example: POST to server ===<!doctype html>
+      ইনাকাম করুন হালাল ভাবে 
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AdEarn - Watch Ads & Earn</title>
+<style>
+:root {
+  --primary-color: #0f0c29;
+  --secondary-color: #302b63;
+  --card-bg: #1c1c1c;
+  --text-color: #fff;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+header {
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  text-align: center;
+  padding: 15px 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+.container {
+  max-width: 600px;
+  margin: 30px auto;
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #0005;
+}
+button {
+  background: linear-gradient(to right, #1e90ff, #00bfff);
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+button:hover {
+  opacity: 0.9;
+}
+.section {
+  margin-top: 20px;
+}
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #222;
+  color: #fff;
+}
+</style>
+</head>
+<body>
+<header>💸 AdEarn - Watch Ads & Earn</header>
+<div class="container">
+  <h2>Welcome, User123</h2>
+  <p>Balance: <span id="balance">৳0</span></p>
+
+  <div class="section">
+    <h3>🎥 Watch Ads</h3>
+    <button onclick="watchAd()">Watch an Ad</button>
+    <p id="adsWatched">Ads watched: 0</p>
+  </div>
+
+  <div class="section">
+    <h3>👥 Referral</h3>
+    <input id="refLink" value="https://adearn.com/?ref=User123" readonly />
+    <button onclick="copyRef()">কপি</button>
+    <p id="copyMsg"></p>
+  </div>
+
+  <div class="section">
+    <h3>💵 Withdraw</h3>
+    <label>Method:</label>
+    <select id="method">
+      <option>bKash</option>
+      <option>Nagad</option>
+    </select>
+    <label>Account Number:</label>
+    <input id="accNum" placeholder="017xxxxxxxx" />
+    <label>Amount (৳):</label>
+    <input id="amount" type="number" placeholder="500" />
+    <button onclick="withdraw()">Withdraw</button>
+    <p id="withdrawMsg"></p>
+  </div>
+</div>
+
+<script>
+let balance = 0;
+let adsWatched = 0;
+const BALANCE_PER_AD = 5; // ৫ টাকা প্রতি বিজ্ঞাপনে
+const MIN_WITHDRAW = 500;
+
+function watchAd() {
+  adsWatched++;
+  balance += BALANCE_PER_AD;
+  document.getElementById("adsWatched").innerText = "Ads watched: " + adsWatched;
+  document.getElementById("balance").innerText = "৳" + balance;
+}
+
+function copyRef() {
+  const input = document.getElementById("refLink");
+  input.select();
+  document.execCommand("copy");
+  document.getElementById("copyMsg").innerText = "Referral link copied!";
+}
+
+function withdraw() {
+  const amount = Number(document.getElementById("amount").value);
+  const acc = document.getElementById("accNum").value;
+  const method = document.getElementById("method").value;
+  const msg = document.getElementById("withdrawMsg");
+
+  if (amount < MIN_WITHDRAW) {
+    msg.innerText = `❌ ন্যূনতম ${MIN_WITHDRAW}৳ তুলতে হবে।`;
+  } else if (amount > balance) {
+    msg.innerText = "❌ পর্যাপ্ত ব্যালেন্স নেই।";
+  } else if (!acc) {
+    msg.innerText = "⚠️ Account number দিন।";
+  } else {
+    balance -= amount;
+    document.getElementById("balance").innerText = "৳" + balance;
+    msg.innerText = `✅ ${method} এ ${amount}৳ withdraw সফল!`;
+  }
+}
+</script>
+</body>
+    </html><!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AdEarn - Watch Ads & Earn</title>
+<style>
+:root {
+  --primary-color: #0f0c29;
+  --secondary-color: #302b63;
+  --card-bg: #1c1c1c;
+  --text-color: #fff;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+header {
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  text-align: center;
+  padding: 15px 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+.container {
+  max-width: 600px;
+  margin: 30px auto;
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #0005;
+}
+button {
+  background: linear-gradient(to right, #1e90ff, #00bfff);
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+button:hover {
+  opacity: 0.9;
+}
+.section {
+  margin-top: 20px;
+}
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #222;
+  color: #fff;
+}
+</style>
+</head>
+<body>
+<header>💸 AdEarn - Watch Ads & Earn</header>
+<div class="container">
+  <h2>Welcome, User123</h2>
+  <p>Balance: <span id="balance">৳0</span></p>
+
+  <div class="section">
+    <h3>🎥 Watch Ads</h3>
+    <button onclick="watchAd()">Watch an Ad</button>
+    <p id="adsWatched">Ads watched: 0</p>
+  </div>
+
+  <div class="section">
+    <h3>👥 Referral</h3>
+    <input id="refLink" value="https://adearn.com/?ref=User123" readonly />
+    <button onclick="copyRef()">কপি</button>
+    <p id="copyMsg"></p>
+  </div>
+
+  <div class="section">
+    <h3>💵 Withdraw</h3>
+    <label>Method:</label>
+    <select id="method">
+      <option>bKash</option>
+      <option>Nagad</option>
+    </select>
+    <label>Account Number:</label>
+    <input id="accNum" placeholder="017xxxxxxxx" />
+    <label>Amount (৳):</label>
+    <input id="amount" type="number" placeholder="500" />
+    <button onclick="withdraw()">Withdraw</button>
+    <p id="withdrawMsg"></p>
+  </div>
+</div>
+
+<script>
+let balance = 0;
+let adsWatched = 0;
+const BALANCE_PER_AD = 5; // ৫ টাকা প্রতি বিজ্ঞাপনে
+const MIN_WITHDRAW = 500;
+
+function watchAd() {
+  adsWatched++;
+  balance += BALANCE_PER_AD;
+  document.getElementById("adsWatched").innerText = "Ads watched: " + adsWatched;
+  document.getElementById("balance").innerText = "৳" + balance;
+}
+
+function copyRef() {
+  const input = document.getElementById("refLink");
+  input.select();
+  document.execCommand("copy");
+  document.getElementById("copyMsg").innerText = "Referral link copied!";
+}
+
+function withdraw() {
+  const amount = Number(document.getElementById("amount").value);
+  const acc = document.getElementById("accNum").value;
+  const method = document.getElementById("method").value;
+  const msg = document.getElementById("withdrawMsg");
+
+  if (amount < MIN_WITHDRAW) {
+    msg.innerText = `❌ ন্যূনতম ${MIN_WITHDRAW}৳ তুলতে হবে।`;
+  } else if (amount > balance) {
+    msg.innerText = "❌ পর্যাপ্ত ব্যালেন্স নেই।";
+  } else if (!acc) {
+    msg.innerText = "⚠️ Account number দিন।";
+  } else {
+    balance -= amount;
+    document.getElementById("balance").innerText = "৳" + balance;
+    msg.innerText = `✅ ${method} এ ${amount}৳ withdraw সফল!`;
+  }
+}
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AdEarn - Watch Ads & Earn</title>
+<style>
+:root {
+  --primary-color: #0f0c29;
+  --secondary-color: #302b63;
+  --card-bg: #1c1c1c;
+  --text-color: #fff;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+header {
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  text-align: center;
+  padding: 15px 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+.container {
+  max-width: 600px;
+  margin: 30px auto;
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #0005;
+}
+button {
+  background: linear-gradient(to right, #1e90ff, #00bfff);
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+button:hover {
+  opacity: 0.9;
+}
+.section {
+  margin-top: 20px;
+}
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #222;
+  color: #fff;
+}
+</style>
+</head>
+<body>
+<header>💸 AdEarn - Watch Ads & Earn</header>
+<div class="container">
+  <h2>Welcome, User123</h2>
+  <p>Balance: <span id="balance">৳0</span></p>
+
+  <div class="section">
+    <h3>🎥 Watch Ads</h3>
+    <button onclick="watchAd()">Watch an Ad</button>
+    <p id="adsWatched">Ads watched: 0</p>
+  </div>
+
+  <div class="section">
+    <h3>👥 Referral</h3>
+    <input id="refLink" value="https://adearn.com/?ref=User123" readonly />
+    <button onclick="copyRef()">কপি</button>
+    <p id="copyMsg"></p>
+  </div>
+
+  <div class="section">
+    <h3>💵 Withdraw</h3>
+    <label>Method:</label>
+    <select id="method">
+      <option>bKash</option>
+      <option>Nagad</option>
+    </select>
+    <label>Account Number:</label>
+    <input id="accNum" placeholder="017xxxxxxxx" />
+    <label>Amount (৳):</label>
+    <input id="amount" type="number" placeholder="500" />
+    <button onclick="withdraw()">Withdraw</button>
+    <p id="withdrawMsg"></p>
+  </div>
+</div>
+
+<script>
+let balance = 0;
+let adsWatched = 0;
+const BALANCE_PER_AD = 5; // ৫ টাকা প্রতি বিজ্ঞাপনে
+const MIN_WITHDRAW = 500;
+
+function watchAd() {
+  adsWatched++;
+  balance += BALANCE_PER_AD;
+  document.getElementById("adsWatched").innerText = "Ads watched: " + adsWatched;
+  document.getElementById("balance").innerText = "৳" + balance;
+}
+
+function copyRef() {
+  const input = document.getElementById("refLink");
+  input.select();
+  document.execCommand("copy");
+  document.getElementById("copyMsg").innerText = "Referral link copied!";
+}
+
+function withdraw() {
+  const amount = Number(document.getElementById("amount").value);
+  const acc = document.getElementById("accNum").value;
+  const method = document.getElementById("method").value;
+  const msg = document.getElementById("withdrawMsg");
+
+  if (amount < MIN_WITHDRAW) {
+    msg.innerText = `❌ ন্যূনতম ${MIN_WITHDRAW}৳ তুলতে হবে।`;
+  } else if (amount > balance) {
+    msg.innerText = "❌ পর্যাপ্ত ব্যালেন্স নেই।";
+  } else if (!acc) {
+    msg.innerText = "⚠️ Account number দিন।";
+  } else {
+    balance -= amount;
+    document.getElementById("balance").innerText = "৳" + balance;
+    msg.innerText = `✅ ${method} এ ${amount}৳ withdraw সফল!`;
+  }
+}
+</script>
+</body>
+</html>
+
 
 
 
