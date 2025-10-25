@@ -1,222 +1,191 @@
-
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Earning Technology</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ইনকাম করুন অ্যাড দেখে 💰</title>
 
-    <!-- Monetag SDK -->
-    <script src="//libtl.com/sdk.js" data-zone="9459352" data-sdk="show_9459352"></script>
+<script src="//libtl.com/sdk.js" data-zone="9459352" data-sdk="show_9459352"></script>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    <!-- Telegram WebApp JS -->
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #111;
-            color: #eee;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-        }
-        h1 { color: #00c853; }
-        .card {
-            background: #1c1c1c;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 15px auto;
-            max-width: 400px;
-        }
-        button {
-            background: linear-gradient(145deg, #00c853, #009624);
-            color: #fff;
-            border: none;
-            padding: 14px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            margin-top: 10px;
-            width: 90%;
-        }
-        button:disabled {
-            background: #555;
-            cursor: not-allowed;
-        }
-        #status {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 10px;
-            display: none;
-        }
-        .success { background: rgba(0,255,0,0.1); color: #00c853; }
-        .error { background: rgba(255,0,0,0.1); color: #ff5252; }
-        .info { background: rgba(0,0,255,0.1); color: #448aff; }
-        #referralLink {
-            background: #222;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px dashed #666;
-            cursor: pointer;
-            margin-top: 10px;
-            word-break: break-all;
-        }
-    </style>
+<style>
+body {font-family: 'Noto Sans Bengali', sans-serif; background:#0d0d0d; color:#fff; text-align:center;}
+header {background:linear-gradient(135deg,#00c853,#009624);padding:15px;font-size:20px;font-weight:bold;}
+.nav {display:flex;justify-content:space-around;background:#1a1a1a;padding:10px 0;}
+.nav button {background:none;border:none;color:#fff;font-size:15px;cursor:pointer;}
+.nav button.active {color:#00e676;font-weight:bold;}
+.section {display:none;padding:20px;}
+.card {background:#1c1c1c;border-radius:12px;margin:15px auto;padding:15px;max-width:400px;}
+button.action {background:linear-gradient(145deg,#00c853,#009624);color:#fff;border:none;padding:12px;border-radius:10px;font-size:16px;cursor:pointer;width:90%;margin-top:10px;}
+#status {margin-top:15px;padding:10px;border-radius:10px;display:none;}
+.success{background:rgba(0,255,0,0.1);color:#00c853;}
+.error{background:rgba(255,0,0,0.1);color:#ff5252;}
+.info{background:rgba(0,0,255,0.1);color:#448aff;}
+#referralLink{background:#222;padding:10px;border-radius:8px;border:1px dashed #666;cursor:pointer;margin-top:10px;word-break:break-all;}
+#adminPanel {display:none;}
+</style>
 </head>
 
 <body>
-    <h1>Earning Technology</h1>
-    <p>🎬 বিজ্ঞাপন দেখো ও USDT আয় করো!</p>
+<header>💰 ইনকাম করুন অ্যাড দেখে 💰</header>
 
-    <div id="mainApp" style="display:none;">
-        <div class="card">
-            <h2>বর্তমান ব্যালেন্স</h2>
-            <h1 id="balance">USDT 0.00</h1>
-            <p>দেখা বিজ্ঞাপন: <span id="adCount">0</span></p>
-            <button id="watchAdBtn">Watch Ad (+0.01 USDT)</button>
-        </div>
+<div class="nav">
+    <button id="navHome" class="active">🏠 হোম</button>
+    <button id="navTask">🎯 টাস্ক</button>
+    <button id="navRefer">👥 রেফার</button>
+    <button id="navWithdraw">💸 উইথড্র</button>
+    <button id="navAdmin">⚙️ অ্যাডমিন</button>
+</div>
 
-        <div class="card">
-            <h2>Withdraw</h2>
-            <input type="text" id="wallet" placeholder="TRC20 Address" style="width:90%;padding:10px;border-radius:8px;border:none;">
-            <button id="withdrawBtn" disabled>Withdraw (Min 10 USDT)</button>
-        </div>
-
-        <div class="card">
-            <h2>Referral</h2>
-            <p>প্রতি রেফারেলে পাবেন 0.5 USDT!</p>
-            <div id="referralLink" title="Click to copy"></div>
-        </div>
+<!-- হোম -->
+<section id="home" class="section" style="display:block;">
+    <div class="card">
+        <h2>বর্তমান ব্যালেন্স</h2>
+        <h1 id="balance">৳ 0.00</h1>
+        <p>দেখা বিজ্ঞাপন: <span id="adCount">0</span></p>
     </div>
+</section>
 
-    <div id="notTelegram" class="card" style="display:none;">
-        ⚠️ অনুগ্রহ করে এই অ্যাপটি Telegram এর ভেতরে খুলুন।  
-        ব্রাউজারে এটি কাজ করবে না।
+<!-- টাস্ক -->
+<section id="task" class="section">
+    <div class="card">
+        <h2>🎬 অ্যাড দেখুন ও ইনকাম করুন</h2>
+        <p>প্রতি অ্যাডে পাবেন <b>৳0.50</b></p>
+        <button id="watchAdBtn" class="action">অ্যাড দেখুন</button>
     </div>
+</section>
 
-    <div id="status"></div>
+<!-- রেফার -->
+<section id="refer" class="section">
+    <div class="card">
+        <h2>👥 রেফার করে ইনকাম করুন</h2>
+        <p>প্রতি রেফারে পাবেন <b>৳1.00</b></p>
+        <div id="referralLink" title="কপি করতে ট্যাপ করুন"></div>
+    </div>
+</section>
 
-    <script>
-        const ADMIN_ID = 7886407854; // 🔹 তোমার Telegram User ID বসাও
-        const BOT_USERNAME = "Addincom9e_bot"; // 🔹 তোমার Bot এর ইউজারনেম বসাও
-        const WEBAPP_NAME = "EarningApp"; // 🔹 তোমার WebApp এর নাম বসাও
+<!-- উইথড্র -->
+<section id="withdraw" class="section">
+    <div class="card">
+        <h2>💸 বিকাশে টাকা তুলুন</h2>
+        <input type="text" id="bkash" placeholder="বিকাশ নাম্বার লিখুন" style="width:90%;padding:10px;border-radius:8px;border:none;text-align:center;">
+        <button id="withdrawBtn" class="action" disabled>Withdraw (Min ৳50)</button>
+    </div>
+</section>
 
-        const AD_REWARD = 0.01;
-        const WITHDRAW_LIMIT = 10.00;
-        let balance = 0;
-        let adCount = 0;
-
-        const statusBox = document.getElementById("status");
-        const mainApp = document.getElementById("mainApp");
-        const notTelegram = document.getElementById("notTelegram");
-        const referralLink = document.getElementById("referralLink");
-
-        // ✅ Telegram WebApp check
-        if (window.Telegram && window.Telegram.WebApp) {
-            const tg = window.Telegram.WebApp;
-            mainApp.style.display = "block";
-
-            const user = tg.initDataUnsafe.user;
-            if (user && user.id) {
-                const refLink = `https://t.me/${BOT_USERNAME}/${WEBAPP_NAME}?startapp=ref${user.id}`;
-                referralLink.textContent = refLink;
-
-                referralLink.onclick = () => {
-                    navigator.clipboard.writeText(refLink);
-                    showStatus("রেফারেল লিংক কপি হয়েছে ✅", "success");
-                };
-            }
-
-            // Referral Handling
-            if (tg.initDataUnsafe.start_param) {
-                const refId = tg.initDataUnsafe.start_param.replace("ref", "");
-                showStatus(`🎉 আপনি ${refId} দ্বারা রেফার হয়েছেন!`, "info");
-            }
-
-            // Watch Ad
-            document.getElementById("watchAdBtn").onclick = () => {
-                showStatus("Ad loading...", "info");
-                show_9459352()
-                    .then(() => {
-                        adCount++;
-                        balance += AD_REWARD;
-                        updateUI();
-                        showStatus(`+${AD_REWARD.toFixed(2)} USDT যোগ হয়েছে ✅`, "success");
-                    })
-                    .catch(() => showStatus("Ad load ব্যর্থ হয়েছে ❌", "error"));
-            };
-
-            // Withdraw
-            document.getElementById("withdrawBtn").onclick = () => {
-                const wallet = document.getElementById("wallet").value.trim();
-                if (!wallet.startsWith("T") || wallet.length < 30) {
-                    return showStatus("⚠️ সঠিক TRC20 Address দিন", "error");
-                }
-                tg.sendData(`Withdraw Request\nUser: ${user.id}\nAmount: ${balance.toFixed(2)} USDT\nWallet: ${wallet}`);
-                showStatus("✅ Withdraw Request পাঠানো হয়েছে!", "success");
-                balance = 0; adCount = 0;
-                updateUI();
-            };
-
-            function updateUI() {
-                document.getElementById("balance").textContent = `USDT ${balance.toFixed(2)}`;
-                document.getElementById("adCount").textContent = adCount;
-                document.getElementById("withdrawBtn").disabled = balance < WITHDRAW_LIMIT;
-            }
-
-            function showStatus(msg, type) {
-                statusBox.textContent = msg;
-                statusBox.className = type;
-                statusBox.style.display = "block";
-                setTimeout(() => statusBox.style.display = "none", 4000);
-            }
-
-            tg.ready();
-        } else {
-            // ❌ Not Telegram
-            notTelegram.style.display = "block";
-        }
-    </script>
-</body>
-<!-- অ্যাডমিন প্যানেল -->
+<!-- 🛠️ অ্যাডমিন প্যানেল -->
 <section id="adminPanel" class="section">
     <div class="card">
         <h2>⚙️ অ্যাডমিন প্যানেল</h2>
         <p><b>Welcome, Admin!</b></p>
         <p>এখানে আপনি দেখতে পারবেন:</p>
         <ul style="text-align:left;max-width:350px;margin:auto;">
-            <li>👤 ইউজার ইনফো (ID, Name, Username)</li>
+            <li>👤 ইউজার ইনফো</li>
             <li>💸 Withdraw রিকোয়েস্ট</li>
             <li>🎯 মোট Ad দেখা</li>
             <li>👥 রেফার সংখ্যা</li>
         </ul>
+        <p>⚠️ এই ভার্সনে এগুলো <b>ডেমো</b> হিসাবে দেখানো হয়েছে।</p>
+        <p>🔗 যদি চান আমি বাস্তব সার্ভার সহ (Firebase/MySQL দিয়ে) এগুলো কাজ করিয়ে দিই, বললেই করে দেবো!</p>
     </div>
 </section>
 
+<div id="status"></div>
+
 <script>
-const ADMIN_ID = 7886407854; // তোমার Telegram ID
+const ADMIN_ID = 7886407854; // 🔹 তোমার Telegram ID
+const BOT_USERNAME = "Addincom9e_bot";
+const WEBAPP_NAME = "EarningApp";
 
-// ন্যাভিগেশন
-buttons.forEach((btn, i) => {
-    document.getElementById(btn).onclick = () => {
-        buttons.forEach(id => document.getElementById(id).classList.remove("active"));
-        sections.forEach(id => document.getElementById(id).style.display = "none");
-        document.getElementById(btn).classList.add("active");
+let balance = 0;
+let adCount = 0;
+const AD_REWARD = 0.50;
+const WITHDRAW_LIMIT = 50.00;
 
-        if (sections[i] === "adminPanel") {
-            if (user.id !== ADMIN_ID) {
+// Telegram init
+if (window.Telegram && window.Telegram.WebApp) {
+    const tg = window.Telegram.WebApp;
+    const user = tg.initDataUnsafe.user;
+
+    // রেফারেল লিংক
+    if (user && user.id) {
+        const link = `https://t.me/${BOT_USERNAME}/${WEBAPP_NAME}?startapp=ref${user.id}`;
+        document.getElementById("referralLink").textContent = link;
+        document.getElementById("referralLink").onclick = () => {
+            navigator.clipboard.writeText(link);
+            showStatus("✅ রেফারেল লিংক কপি হয়েছে!", "success");
+        };
+    }
+
+    // যদি রেফার লিংক দিয়ে জয়েন করে
+    if (tg.initDataUnsafe.start_param) {
+        const refId = tg.initDataUnsafe.start_param.replace("ref", "");
+        showStatus(`🎉 আপনি ${refId} দ্বারা রেফার হয়েছেন!`, "info");
+    }
+
+    // অ্যাড দেখা
+    document.getElementById("watchAdBtn").onclick = () => {
+        showStatus("অ্যাড লোড হচ্ছে...", "info");
+        show_9459352()
+            .then(() => {
+                adCount++;
+                balance += AD_REWARD;
+                updateUI();
+                showStatus(`+৳${AD_REWARD.toFixed(2)} যোগ হয়েছে ✅`, "success");
+            })
+            .catch(() => showStatus("অ্যাড ব্যর্থ হয়েছে ❌", "error"));
+    };
+
+    // উইথড্র
+    document.getElementById("withdrawBtn").onclick = () => {
+        const bkash = document.getElementById("bkash").value.trim();
+        if (bkash.length !== 11 || !bkash.startsWith("01")) {
+            return showStatus("⚠️ সঠিক বিকাশ নাম্বার দিন", "error");
+        }
+        tg.sendData(`Withdraw Request\nUser ID: ${user.id}\nAmount: ৳${balance.toFixed(2)}\nBkash: ${bkash}`);
+        showStatus("✅ Withdraw Request পাঠানো হয়েছে!", "success");
+        balance = 0;
+        adCount = 0;
+        updateUI();
+    };
+
+    // ন্যাভিগেশন
+    const sections = ["home", "task", "refer", "withdraw", "adminPanel"];
+    const buttons = ["navHome", "navTask", "navRefer", "navWithdraw", "navAdmin"];
+
+    buttons.forEach((btn, i) => {
+        document.getElementById(btn).onclick = () => {
+            buttons.forEach(id => document.getElementById(id).classList.remove("active"));
+            sections.forEach(id => document.getElementById(id).style.display = "none");
+            document.getElementById(btn).classList.add("active");
+            if (sections[i] === "adminPanel" && user.id !== ADMIN_ID) {
                 showStatus("❌ শুধুমাত্র অ্যাডমিনের জন্য!", "error");
                 return;
             }
-            document.getElementById("adminPanel").style.display = "block";
-        } else {
             document.getElementById(sections[i]).style.display = "block";
-        }
-    };
-});
+        };
+    });
+
+    function updateUI() {
+        document.getElementById("balance").textContent = `৳ ${balance.toFixed(2)}`;
+        document.getElementById("adCount").textContent = adCount;
+        document.getElementById("withdrawBtn").disabled = balance < WITHDRAW_LIMIT;
+    }
+
+    function showStatus(msg, type) {
+        const box = document.getElementById("status");
+        box.textContent = msg;
+        box.className = type;
+        box.style.display = "block";
+        setTimeout(() => box.style.display = "none", 4000);
+    }
+
+    tg.ready();
+} else {
+    document.body.innerHTML = "<h2 style='color:red;margin-top:50px;'>⚠️ Telegram অ্যাপের ভিতরে খুলুন!</h2>";
+}
 </script>
+</body>
+</html>
 
 
